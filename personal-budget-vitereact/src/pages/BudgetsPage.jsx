@@ -46,7 +46,7 @@ export default function BudgetsPage() {
   const [rowModesModel, setRowModesModel] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:3000/budgets/", {
+    fetch("http://52.203.126.57:3000/budgets/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export default function BudgetsPage() {
   };
 
   const handleDeleteClick = (id) => () => {
-    fetch(`http://localhost:3000/budgets/${id}`, {
+    fetch(`http://52.203.126.57:3000/budgets/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -107,7 +107,7 @@ export default function BudgetsPage() {
       const updatedRow = { ...newRow };
       delete updatedRow.isNew;
 
-      fetch("http://localhost:3000/expenses/", {
+      fetch("http://52.203.126.57:3000/budgets/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -128,7 +128,7 @@ export default function BudgetsPage() {
       const updatedRow = { ...newRow };
       console.log(updatedRow);
 
-      fetch(`http://localhost:3000/expenses/${newRow._id}`, {
+      fetch(`http://52.203.126.57:3000/budgets/${newRow._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -67,7 +67,7 @@ function App() {
     let timer;
 
     if (token) {
-      const expirationTime = new Date().getTime() + 3600000; 
+      const expirationTime = new Date().getTime() + 60000; 
       const remaining = expirationTime - new Date().getTime();
       console.log(expirationTime, new Date().getTime(), remaining);
       setRemainingTime(remaining);
@@ -84,26 +84,33 @@ function App() {
 
       return () => clearInterval(timer);
     }
+
+    if (remainingTime > 60000) {
+      navigate('/login');
+      localStorage.clear()
+    }
   }, [token]);
 
   const handleStayLoggedIn = async () => {
     // Handle user choosing to stay logged in
-    try {
+    if (remainingTime < 60000) {
       // Implement any necessary actions to refresh the token or extend the session
-      const response = await fetch("http://127.0.0.1:3000/users/refreshToken", {
+      const response = await fetch("http://52.203.126.57:3000/users/refreshToken", {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log("response", response);
       const newToken = response.token;
+      localStorage.removeItem('token');
+
       localStorage.setItem("token", newToken);
       setShowDialog(false);
       console.log("Token refreshed", showDialog);
-    } catch (err) {
+    } else {
       setShowDialog(false);
       navigate("/login");
-      console.log("Error refreshing token:", err);
-      alert("Error refreshing token. Redirect to login page", err);
+      alert("Error refreshing token. Redirect to login page");
+      setShowDialog(false);
     }
   };
 
@@ -116,7 +123,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div>
-        {showDialog && (
+        {showDialog && remainingTime < 60000(
           <Dialog
             open={showDialog}
             aria-labelledby="alert-dialog-title"

@@ -154,16 +154,16 @@ router.get(
       {
         $lookup: {
           from: "budgets",
-          localField: "budgets",
-          foreignField: "budget._id",
+          localField: "_id",
+          foreignField: "user",
           as: "budgets",
         },
       },
       {
         $lookup: {
           from: "expenses",
-          localField: "expenses",
-          foreignField: "expense._id",
+          localField: "_id",
+          foreignField: "user",
           as: "expenses",
         },
       },

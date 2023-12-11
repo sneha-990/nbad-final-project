@@ -7,11 +7,19 @@ const passport = require("passport");
 const usersRouter = require('./routes/users')
 const budgetsRouter = require('./routes/budgets')
 const expensesRouter = require('./routes/expenses')
+const compression = require('compression')
+
 
 app.use(express.json());
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize())
+app.use(compression({filter: (req, res) => {
+  if (req.headers['x-no-compression']) {
+    return false;
+  }
+  return compression.filter(req, res)
+}}))
 app.use('/users', usersRouter);
 app.use('/budgets', budgetsRouter);
 app.use('/expenses', expensesRouter);

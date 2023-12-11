@@ -30,7 +30,7 @@ router.post("/", cors.corsWithOptions, verifyUser, (req, res, next) => {
     .then((budget) => {
       res.statusCode = 200;
       res.setHeader("Content-Type", "application/json");
-      res.json(budget);
+      res.json({...budget, id: budget._id});
     })
     .catch((err) => next(err));
 });

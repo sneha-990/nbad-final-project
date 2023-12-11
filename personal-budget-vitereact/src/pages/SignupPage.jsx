@@ -24,7 +24,7 @@ function SignUp() {
       const username = data.get("email");
       const password = data.get("password");
       console.log(firstname, lastname, username, password);
-      const response = await fetch("http://127.0.0.1:3000/users/signup", {
+      const response = await fetch("http://52.203.126.57:3000/users/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
