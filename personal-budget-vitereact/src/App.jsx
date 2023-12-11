@@ -85,7 +85,7 @@ function App() {
       return () => clearInterval(timer);
     }
 
-    if (remainingTime > 60000) {
+    if (remainingTime < 0) {
       navigate('/login');
       localStorage.clear()
     }
