@@ -8,7 +8,7 @@ describe('Hero component', () => {
   it('renders heading and subheading', () => {
     render(<Hero />);
     const headingElement = screen.getByText(/Personal Budget/i);
-    const subheadingElement = screen.getByText(/A personal-budget management application/i);
+    const subheadingElement = screen.getByText(/An expense tracking and management application/i);
 
     expect(headingElement).toBeInTheDocument();
     expect(subheadingElement).toBeInTheDocument();
