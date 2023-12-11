@@ -123,7 +123,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div>
-        {showDialog && remainingTime < 60000(
+        {showDialog && remainingTime > 0 (
           <Dialog
             open={showDialog}
             aria-labelledby="alert-dialog-title"
