@@ -92,7 +92,7 @@ function App() {
 
   const handleStayLoggedIn = async () => {
     // Handle user choosing to stay logged in
-    if (remainingTime < 60000) {
+    if (remainingTime > 0) {
       // Implement any necessary actions to refresh the token or extend the session
       const response = await fetch("http://52.203.126.57:3000/users/refreshToken", {
         method: "POST",
@@ -122,7 +122,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div>
-        {showDialog && remainingTime > 0 (
+        {showDialog && (remainingTime > 0) (
           <Dialog
             open={showDialog}
             aria-labelledby="alert-dialog-title"
