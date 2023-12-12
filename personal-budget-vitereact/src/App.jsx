@@ -83,6 +83,7 @@ function App() {
       }, 1000); // Update remaining time every second
 
       if (remainingTime < 0) {
+        showDialog(false)
         navigate('/login');
         localStorage.clear()
       }
@@ -122,7 +123,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div>
-        {showDialog && (remainingTime > 0) (
+        {showDialog && (
           <Dialog
             open={showDialog}
             aria-labelledby="alert-dialog-title"
