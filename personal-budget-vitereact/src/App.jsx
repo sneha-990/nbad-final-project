@@ -92,13 +92,13 @@ function App() {
   }, [token]);
 
   const handleStayLoggedIn = async () => {
-    // Handle user choosing to stay logged in
-    if (remainingTime > 0) {
-      // Implement any necessary actions to refresh the token or extend the session
-      const response = await fetch("http://52.203.126.57:3000/users/refreshToken", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+    // Handle user choosing to stay logged i
+    // Implement any necessary actions to refresh the token or extend the session
+    fetch("http://52.203.126.57:3000/users/refreshToken", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+    }).then((response) => response.json())
+    .then((response) => {
       console.log("response", response);
       const newToken = response.token;
       localStorage.removeItem('token');
@@ -106,12 +106,12 @@ function App() {
       localStorage.setItem("token", newToken);
       setShowDialog(false);
       console.log("Token refreshed", showDialog);
-    } else {
+    }).catch((error) => {
       setShowDialog(false);
       navigate("/login");
       alert("Error refreshing token. Redirect to login page");
       setShowDialog(false);
-    }
+    })
   };
 
   const handleLogout = () => {

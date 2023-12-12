@@ -127,7 +127,6 @@ router.post(
   (req, res) => {
     console.log(req.user);
     const token = authenticate.getToken({ _id: req.user._id });
-    if (authenticate.isTokenExpired(token)) {
       const newToken = authenticate.getToken({ _id: req.user._id });
       res.statusCode = 200;
       res.setHeader("Content-Type", "application/json");
@@ -136,11 +135,6 @@ router.post(
         success: true,
         token: newToken,
       });
-    } else {
-      res.statusCode = 200;
-      res.setHeader("Content-Type", "application/json");
-      return res.json({ status: "JWT valid!", success: true, token: token });
-    }
   }
 );
 
