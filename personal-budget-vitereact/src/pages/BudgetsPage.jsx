@@ -172,7 +172,7 @@ export default function BudgetsPage() {
     },
     {
       field: "month",
-      headerName: "month",
+      headerName: "Date (yyyy-mm-dd)",
       type: "string",
       width: 200,
       editable: true,
