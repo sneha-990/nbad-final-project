@@ -82,12 +82,11 @@ function App() {
         }
       }, 1000); // Update remaining time every second
 
+      if (remainingTime < 0) {
+        navigate('/login');
+        localStorage.clear()
+      }
       return () => clearInterval(timer);
-    }
-
-    if (remainingTime < 0) {
-      navigate('/login');
-      localStorage.clear()
     }
   }, [token]);
 
